@@ -59,5 +59,10 @@ export const Set: CollectionConfig = {
       type: 'text',
       virtual: 'match.player2.event.tournament.title',
     },
+    {
+      name: 'inProgress',
+      type: 'checkbox',
+      defaultValue: false,
+    },
   ],
 }

@@ -105,10 +105,15 @@ export default buildConfig({
           }
 
           // 🧠 One-to-one mapping: match → (timeSlot + court)
+          const sortedMatches = Matches.sort(
+            (match1, match2) => match1.round - match2.round || match1.match - match2.match,
+          )
+          console.log('sortedMatches', sortedMatches)
+          console.log('slotCourtPairs', slotCourtPairs)
           const total = Math.min(Matches.length, slotCourtPairs.length)
           const createdMatches: String[] = []
           for (let i = 0; i < total; i++) {
-            const match = Matches[i]
+            const match = sortedMatches[i]
             const slot = slotCourtPairs[i]
 
             const CreatedMatch = await req.payload.create({
@@ -121,6 +126,10 @@ export default buildConfig({
                 //@ts-ignore
                 matchDate: slot.timeSlot,
                 court: slot.court, // ✅ ALWAYS SET
+                round: match.round,
+                match: match.match,
+                winnerRound: match?.win?.round || 0,
+                winnerMatch: match?.win?.match || 0,
               },
             })
             //@ts-ignore

@@ -246,10 +246,16 @@ export interface Match {
   umpire?: (number | null) | User;
   player1Name?: string | null;
   player2Name?: string | null;
+  winner?: (number | null) | Registration;
   Event?: string | null;
   matchDate?: string | null;
   court?: string | null;
   isCompleted?: boolean | null;
+  inProgress?: boolean | null;
+  round?: number | null;
+  match?: number | null;
+  winnerRound?: number | null;
+  winnerMatch?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -268,6 +274,7 @@ export interface Set {
   player2?: string | null;
   isCompleted?: boolean | null;
   tournamentTitle?: string | null;
+  inProgress?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -578,10 +585,16 @@ export interface MatchesSelect<T extends boolean = true> {
   umpire?: T;
   player1Name?: T;
   player2Name?: T;
+  winner?: T;
   Event?: T;
   matchDate?: T;
   court?: T;
   isCompleted?: T;
+  inProgress?: T;
+  round?: T;
+  match?: T;
+  winnerRound?: T;
+  winnerMatch?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -599,6 +612,7 @@ export interface SetsSelect<T extends boolean = true> {
   player2?: T;
   isCompleted?: T;
   tournamentTitle?: T;
+  inProgress?: T;
   updatedAt?: T;
   createdAt?: T;
 }

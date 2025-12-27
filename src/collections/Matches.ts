@@ -19,6 +19,7 @@ export const Match: CollectionConfig = {
       return true
     },
   },
+  defaultSort: 'id',
   fields: [
     {
       name: 'player1',
@@ -53,9 +54,15 @@ export const Match: CollectionConfig = {
       },
     },
     {
+      name: 'winner',
+      type: 'relationship',
+      relationTo: 'registrations',
+    },
+    {
       name: 'Event',
       type: 'text',
       virtual: 'player1.event.title',
+
       admin: {
         readOnly: true,
       },
@@ -76,6 +83,27 @@ export const Match: CollectionConfig = {
       admin: {
         readOnly: true,
       },
+    },
+    {
+      name: 'inProgress',
+      type: 'checkbox',
+      defaultValue: false,
+    },
+    {
+      name: 'round',
+      type: 'number',
+    },
+    {
+      name: 'match',
+      type: 'number',
+    },
+    {
+      name: 'winnerRound',
+      type: 'number',
+    },
+    {
+      name: 'winnerMatch',
+      type: 'number',
     },
   ],
 }

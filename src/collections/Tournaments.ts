@@ -42,11 +42,10 @@ export const Tournament: CollectionConfig = {
         return false
       }
       //allowing only organisers to create a tournament
-      if (user.role === 'organiser') {
-        return true
+      if (user.role != 'organiser') {
+        return false
       }
-
-      return false
+      return true
     },
 
     read: async ({ req: { user } }) => {
