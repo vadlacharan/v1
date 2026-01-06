@@ -1,0 +1,8 @@
+  /**
+       * This hook runs BEFORE a Rally is created.
+       * Responsibility:
+       * 1. Check if the current Set already has a winner
+       * 2. Check if the Match already has a winner
+       * 3. If this rally causes a Set win → update Set winner
+       * 4. If enough Sets are won → update Match winner
+       */

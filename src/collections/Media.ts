@@ -6,6 +6,7 @@ export const Media: CollectionConfig = {
     hidden: true,
   },
   access: {
+    create: () => true,
     read: () => true,
   },
   fields: [

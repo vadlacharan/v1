@@ -1,5 +1,6 @@
 //@ts-nocheck
 // storage-adapter-import-placeholder
+
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
@@ -89,16 +90,17 @@ export default buildConfig({
             limit: 999,
           })
 
-          const registeredIds = registrations.docs.map((r) => r.id)
+          const registeredUserIDs = registrations.docs.map((r) => r.player.id)
+          req.payload.logger.trace('registrations', registeredUserIDs)
 
           let Matches: number[] = []
 
           if (event['Pairing Type'] === 'round-robin') {
             //@ts-ignore
-            Matches = RoundRobin(registeredIds)
+            Matches = RoundRobin(registeredUserIDs)
           } else if (event['Pairing Type'] === 'single-elimination') {
             //@ts-ignore
-            Matches = SingleElimination(registeredIds)
+            Matches = SingleElimination(registeredUserIDs)
           }
 
           if (!Matches.length || !slotCourtPairs.length) {
@@ -109,8 +111,7 @@ export default buildConfig({
           const sortedMatches = Matches.sort(
             (match1, match2) => match1.round - match2.round || match1.match - match2.match,
           )
-          console.log('sortedMatches', sortedMatches)
-          console.log('slotCourtPairs', slotCourtPairs)
+
           const total = Math.min(Matches.length, slotCourtPairs.length)
           const createdMatches: String[] = []
           for (let i = 0; i < total; i++) {
@@ -129,6 +130,7 @@ export default buildConfig({
                 court: slot.court, // ✅ ALWAYS SET
                 round: match.round,
                 match: match.match,
+                event: input.event,
                 winnerRound: match?.win?.round || 0,
                 winnerMatch: match?.win?.match || 0,
               },

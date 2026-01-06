@@ -105,5 +105,10 @@ export const Tournament: CollectionConfig = {
       name: 'venue',
       type: 'textarea',
     },
+    {
+      name: 'banner',
+      type: 'upload',
+      relationTo: 'media',
+    },
   ],
 }

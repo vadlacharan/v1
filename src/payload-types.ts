@@ -241,13 +241,11 @@ export interface Registration {
  */
 export interface Match {
   id: number;
-  player1?: (number | null) | Registration;
-  player2?: (number | null) | Registration;
+  player1?: (number | null) | User;
+  event?: (number | null) | Event;
+  player2?: (number | null) | User;
   umpire?: (number | null) | User;
-  player1Name?: string | null;
-  player2Name?: string | null;
-  winner?: (number | null) | Registration;
-  Event?: string | null;
+  winner?: (number | null) | User;
   matchDate?: string | null;
   court?: string | null;
   isCompleted?: boolean | null;
@@ -267,13 +265,10 @@ export interface Set {
   id: number;
   match?: (number | null) | Match;
   set: number;
-  winner?: (number | null) | Registration;
+  winner?: (number | null) | User;
   player1Score?: number | null;
   player2Score?: number | null;
-  player1?: string | null;
-  player2?: string | null;
   isCompleted?: boolean | null;
-  tournamentTitle?: string | null;
   inProgress?: boolean | null;
   updatedAt: string;
   createdAt: string;
@@ -581,12 +576,10 @@ export interface RegistrationsSelect<T extends boolean = true> {
  */
 export interface MatchesSelect<T extends boolean = true> {
   player1?: T;
+  event?: T;
   player2?: T;
   umpire?: T;
-  player1Name?: T;
-  player2Name?: T;
   winner?: T;
-  Event?: T;
   matchDate?: T;
   court?: T;
   isCompleted?: T;
@@ -608,10 +601,7 @@ export interface SetsSelect<T extends boolean = true> {
   winner?: T;
   player1Score?: T;
   player2Score?: T;
-  player1?: T;
-  player2?: T;
   isCompleted?: T;
-  tournamentTitle?: T;
   inProgress?: T;
   updatedAt?: T;
   createdAt?: T;

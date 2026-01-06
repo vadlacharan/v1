@@ -3,7 +3,7 @@ import { CollectionConfig } from 'payload'
 export const Match: CollectionConfig = {
   slug: 'matches',
   admin: {
-    defaultColumns: ['player1Name', 'player2Name', 'Event', 'matchDate', 'court'],
+    defaultColumns: ['player1', 'player2', 'event', 'matchDate', 'court'],
   },
   access: {
     read: ({ req: { user } }) => {
@@ -24,48 +24,29 @@ export const Match: CollectionConfig = {
     {
       name: 'player1',
       type: 'relationship',
-      relationTo: 'registrations',
+      relationTo: 'users',
+    },
+    {
+      name: 'event',
+      type: 'relationship',
+      relationTo: 'events',
     },
 
     {
       name: 'player2',
       type: 'relationship',
-      relationTo: 'registrations',
+      relationTo: 'users',
     },
     {
       name: 'umpire',
       type: 'relationship',
       relationTo: 'users',
     },
-    {
-      name: 'player1Name',
-      type: 'text',
-      virtual: 'player1.player.email',
-      admin: {
-        readOnly: true,
-      },
-    },
-    {
-      name: 'player2Name',
-      type: 'text',
-      virtual: 'player2.player.email',
-      admin: {
-        readOnly: true,
-      },
-    },
+
     {
       name: 'winner',
       type: 'relationship',
-      relationTo: 'registrations',
-    },
-    {
-      name: 'Event',
-      type: 'text',
-      virtual: 'player1.event.title',
-
-      admin: {
-        readOnly: true,
-      },
+      relationTo: 'users',
     },
     {
       name: 'matchDate',

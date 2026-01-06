@@ -18,6 +18,7 @@ export const Set: CollectionConfig = {
       name: 'match',
       type: 'relationship',
       relationTo: 'matches',
+      index: true,
     },
     {
       name: 'set',
@@ -27,7 +28,7 @@ export const Set: CollectionConfig = {
     {
       name: 'winner',
       type: 'relationship',
-      relationTo: 'registrations',
+      relationTo: 'users',
     },
     {
       name: 'player1Score',
@@ -40,24 +41,9 @@ export const Set: CollectionConfig = {
       defaultValue: 0,
     },
     {
-      name: 'player1',
-      type: 'text',
-      virtual: 'match.player1.player.fullname',
-    },
-    {
-      name: 'player2',
-      type: 'text',
-      virtual: 'match.player2.player.fullname',
-    },
-    {
       name: 'isCompleted',
       type: 'checkbox',
       defaultValue: false,
-    },
-    {
-      name: 'tournamentTitle',
-      type: 'text',
-      virtual: 'match.player2.event.tournament.title',
     },
     {
       name: 'inProgress',
