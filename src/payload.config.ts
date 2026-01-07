@@ -23,7 +23,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  serverURL: 'https://smashlive-omega.vercel.app',
+  serverURL: 'http://localhost:3000',
   cors: ['http://localhost:8080', 'http://localhost'],
   csrf: ['http://localhost:8080', 'http://localhost'],
 

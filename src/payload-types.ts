@@ -190,6 +190,7 @@ export interface Tournament {
   title?: string | null;
   organiser?: (number | null) | User;
   venue?: string | null;
+  banner?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -527,6 +528,7 @@ export interface TournamentsSelect<T extends boolean = true> {
   title?: T;
   organiser?: T;
   venue?: T;
+  banner?: T;
   updatedAt?: T;
   createdAt?: T;
 }

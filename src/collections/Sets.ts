@@ -13,6 +13,10 @@ export const Set: CollectionConfig = {
       'winner',
     ],
   },
+  access: {
+    read: () => true,
+    create: () => true,
+  },
   fields: [
     {
       name: 'match',
